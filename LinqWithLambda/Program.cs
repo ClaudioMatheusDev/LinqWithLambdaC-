@@ -39,4 +39,20 @@ Print("NAME OF PRODCUTS FROM TOOLS", r2);
 var r3 = products.Where(p => p.Category.Name[0] == 'C').Select(p => new { p.Name, p.Price, CategoryName = p.Category.Name }); //Usando o .Select para selecionar apenas o nome,
 Print("NAME STARTED WITH 'C' AND ANONYMOUS OBJECT", r3);                                                                                                                       //preço e categoria, na categoria estamos renomeando a mesma com CategoyName =
 
+var r4 = products.Where(p => p.Category.Tier == 1).OrderBy(p => p.Price).ThenBy(p => p.Name); //Ordenando os produtos por preço e por nome
+Print("TIER 1 ORDER BY PRICE THEN BY NAME", r4);
+
+var r5 = r4.Skip(2).Take(4);
+Print("TIER 1 ORDER BY PRICE THEN BY NAME SKIP 2 TAKE 4", r5);
+
+var r6 = products.FirstOrDefault();
+Console.WriteLine("First or default test 1" + r6); //Buscando o produto número 1
+
+var r7 = products.Where(p => p.Price > 3000.0).FirstOrDefault(); //Caso a busca for nula, utilizamos o FirstOrDefault
+Console.WriteLine("First or default test 2" + r7);
+Console.WriteLine();
+
+var r8 = products.Where(p => p.Id == 3).SingleOrDefault();
+Console.WriteLine("Single or default test1: " + r8);
+
 
